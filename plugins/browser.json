@@ -1,0 +1,73 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-battery-status": {
+            "PACKAGE_NAME": "me.chemry.geebee"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "me.chemry.geebee"
+        },
+        "cordova-plugin-media-capture": {
+            "PACKAGE_NAME": "me.chemry.geebee"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "me.chemry.geebee"
+        },
+        "cordova-plugin-contacts": {
+            "PACKAGE_NAME": "me.chemry.geebee"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "me.chemry.geebee"
+        },
+        "cordova-plugin-device-motion": {
+            "PACKAGE_NAME": "me.chemry.geebee"
+        },
+        "cordova-plugin-device-orientation": {
+            "PACKAGE_NAME": "me.chemry.geebee"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "me.chemry.geebee"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "me.chemry.geebee"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "me.chemry.geebee"
+        },
+        "cordova-plugin-globalization": {
+            "PACKAGE_NAME": "me.chemry.geebee"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "me.chemry.geebee"
+        },
+        "cordova-plugin-media": {
+            "PACKAGE_NAME": "me.chemry.geebee"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "me.chemry.geebee"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "me.chemry.geebee"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "me.chemry.geebee"
+        },
+        "cordova-plugin-vibration": {
+            "PACKAGE_NAME": "me.chemry.geebee"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "me.chemry.geebee"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "me.chemry.geebee"
+        }
+    }
+}

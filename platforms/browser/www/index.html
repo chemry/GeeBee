@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <script type="text/javascript">
+
+        var windowWidth = window.innerWidth;
+        var windowHeight = window.innerHeight;
+        console.log("window", windowWidth, window.innerWidth);
+        var pixelRatio = window.devicePixelRatio || 1; /// get pixel ratio of device
+        
+
+        var orgx = 600;
+        var orgy = 735;
+        
+
+        var canvasHeight;
+        var canvasWidth;
+
+        var propotion = orgy / orgx;
+
+        canvasWidth = windowWidth;
+        canvasHeight = windowWidth * propotion;
+        var pp = canvasWidth / orgx;
+        console.log("pp:", pixelRatio);
+        var remainHeight = (windowHeight - canvasHeight - 50) * 0.75;
+
+
+    </script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/ball.js"></script>
+    <script src="js/wall.js"></script>
+    <script src="js/hexagon.js"></script>
+    <script src="js/triangle.js"></script>
+    <script src="js/brick.js"></script>
+    <script src="js/paddle.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/scene.js"></script>
+    <style media="screen">
+        canvas {
+            background: #0a0407;
+        }
+        body{
+            background: #0a0304;
+        }
+    </style>
+    
+    <title>Hello World</title>
+</head>
+
+<body>
+    <div class="">
+        <!-- <h1>Phone Gap!!!</h1> -->
+        
+
+         <div id="deviceready">
+            <p class="event listening blink">Connecting to Device</p>
+            <div class="received">
+                <canvas id="board"></canvas>
+                <hr>
+                <!-- <img id="img1" style="display: inline; margin: 20px;" src="img/left_arrow.png">
+                <img id="img2" style="display: inline; margin: 20px;" align="right" src="img/right_arrow.png"> -->
+                <div style="margin-top: 1px;" align="center">
+                    <p style="display:inline; color: white; margin-right: 8px; font-size:15px">Pick a size:</p>
+                    <img id="ball0" style="display: inline; margin: 2px;" src="img/select/ball0.png">
+                    <img id="ball1" style="display: inline; margin: 2px;" src="img/select/ball1-select.png">
+                    <img id="ball2" style="display: inline; margin: 2px;" src="img/select/ball2.png">
+                    <img id="ball3" style="display: inline; margin: 2px;" src="img/select/ball3.png">
+                </div>
+                <hr>
+                <div align="center">
+                    <img id="start-button" style="display: block;" align="middle" onclick="start()" src="img/button/start2.png">
+                    <img id="end-button" style="display: none;" align="middle" onclick="end()" src="img/button/end0.png">
+                </div>
+            </div>
+        </div> 
+    </div>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+        
+
+        canvasMain = document.getElementById("board");
+        canvasMain.width = canvasWidth * pixelRatio;   /// resolution of canvas
+        canvasMain.height = canvasHeight * pixelRatio;
+
+        canvasMain.style.width = canvasWidth + 'px';   /// CSS size of canvas
+        canvasMain.style.height = canvasHeight + 'px';
+
+        console.log(canvasMain);
+
+        let startButton = document.getElementById('start-button');
+        let endButton = document.getElementById('end-button');
+        let buttonPropotion = 185 / 75;
+        let buttonHeight = remainHeight;
+        let buttonWidth = remainHeight * buttonPropotion;
+        startButton.style.width = buttonWidth + "px";
+        startButton.style.height = buttonHeight + "px";
+        endButton.style.width = buttonWidth + "px";
+        endButton.style.height = buttonHeight + "px";
+        /*let img1 = document.getElementById("img1");
+        img1.style.width = 150 * pp + "px";
+        img1.style.height = 150 * pp  + "px";
+        //console.log(pp, img1.style.width);
+        console.log(img1);
+        let img2 = document.getElementById("img2");
+        img2.style.width = 150 * pp + "px";
+        img2.height.width = 150 * pp + "px";
+        console.log(img1);*/
+    </script>
+    <script src="js/main.js"></script>
+    <script src="js/control.js"></script>
+</body>
+
+</html>
